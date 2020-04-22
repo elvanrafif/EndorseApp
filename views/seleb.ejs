@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Celebrity Page</title>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <ul class="nav nav-pills">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/Seleb">Celebrity</a>
+      <a class="nav-link" href="/Shop">Shops</a>
+      <a class="nav-link" href="/">Chart Endorsement</a>
+    </ul>
+  </nav>
+
+  <h1>List Celebrity</h1>
+
+  <a class="btn btn-success" href="/Seleb/add" role="button">Add Seleb</a>
+
+  <% if (data) { %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Followers</th>
+                <th scope="col">Fee</th>
+                <th scope="col" colspan="3">Option</th>
+            </tr>
+        </thead>
+        <% for (let i = 0; i<data.length; i++) { %>
+            <tbody>
+                <tr>
+                    <td><%= data[i].name%></td>
+                    <td><%= data[i].age%></td>
+                    <td><%= data[i].gender%></td>
+                    <td><%= data[i].followers%></td>
+                    <td><%= data[i].fee%></td>
+                    <td><a class="btn btn-info" href="/Seleb/<%= data[i].id %>/edit" role="button">Edit</a></td>
+                    <td><a class="btn btn-danger" href="/Seleb/<%= data[i].id %>/delete" role="button" onclick="return confirm('Are you sure to delete  <%= data[i].name%>') ">Delete</a></td>
+                    <td><a class="btn btn-info" href="/Seleb/<%= data[i].id%>/showCast" role="button">Add Endorsement</a></td>
+
+
+                </tr>
+            </tbody>
+        <% } %>
+      </table>
+  <% } %>
+
+</body>
+</html>

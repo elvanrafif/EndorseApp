@@ -1,6 +1,15 @@
+const {Shop} = require('../models')
+
 class ShopController{
   static show(req,res){
-    res.send(`ini dari seleb controller`)
+    Shop.findAll()
+    .then(data=> {
+      res.render('shop',{data})
+    })
+    .catch(error=> {
+      res.send(error)
+    })
+    
   }
 }
 

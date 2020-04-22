@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <title>Endorsement App</title>
+  <title>Shop Page</title>
 </head>
 <body>
   <nav class="navbar navbar-dark bg-dark">
@@ -16,7 +16,28 @@
     </ul>
   </nav>
 
-  <h1>Welcome to Artist Management Page</h1>
+  <h1>List Shop with Endorsement</h1>
+
+  <% if (data) { %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <% for (let i = 0; i<data.length; i++) { %>
+            <tbody>
+                <tr>
+                    <td><%= data[i].name%></td>
+                    <td><%= data[i].type%></td>
+                    <td><%= data[i].deskripsi%></td>
+                </tr>
+              </tbody>
+        <% } %>
+      </table>
+  <% } %>
 
 </body>
 </html>
