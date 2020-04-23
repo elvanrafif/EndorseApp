@@ -11,10 +11,10 @@
         var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['1','2','3','5'],
+                    labels: <%- JSON.stringify(label) %>,
                     datasets: [{
                         label: '# of Product',
-                        data: [4,3,4,4] ,
+                        data: <%- JSON.stringify(dataNum) %>,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
