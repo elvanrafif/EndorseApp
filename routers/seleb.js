@@ -2,14 +2,17 @@ const express = require('express')
 const router = express.Router()
 
 const SelebController = require('../controllers/selebController')
-
+function checkSession(req,res,next){
+    if(req.session.userId) next()
+    else res.send(`Not Authorized`)
+}
 
 router.get('/', SelebController.show)
-router.get('/add', SelebController.addForm)
+router.get('/add', checkSession, SelebController.addForm)
 router.post('/add', SelebController.add)
-router.get('/:id/edit', SelebController.editForm)
+router.get('/:id/edit', checkSession, SelebController.editForm)
 router.post('/:id/edit', SelebController.edit)
-router.get('/:id/delete', SelebController.delete)
+router.get('/:id/delete', checkSession, SelebController.delete)
 router.get('/:seleb_id/collabs', SelebController.collabs)
 
 

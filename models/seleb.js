@@ -14,45 +14,41 @@ module.exports = (sequelize, DataTypes) => {
      },
     age: {
       type: DataTypes.INTEGER,
-       validate:{
-         notEmpty:{
-           msg : 'Age Required'
-         }
-       }
-     },
+      validate:{
+        min: {
+          args : 0,
+          msg : 'Age Required'
+        }
+      }
+    },
     gender: {
       type: DataTypes.STRING,
+      allowNull : false,
        validate:{
-         notEmpty:{
+         notNull:{
            msg : 'Gender Required'
          }
        }
      },
     followers: {
       type: DataTypes.INTEGER,
-       validate:{
-         notEmpty:{
-           msg : 'Followers Required'
-         },
-         min: 
-         {
-           args: 10000,
+      validate:{
+        min: 
+        {
+          args: 10000,
           msg : 'Followers Minimal 10k'
-         },
-       }
+        },
+      }
      },
     fee: {
       type: DataTypes.INTEGER,
-       validate:{
-         notEmpty:{
-           msg : 'Fee Required'
-         },
-         min: 
-         {
-           args: 1000000,
+      validate:{
+        min: 
+        {
+          args: 1000000,
           msg : 'Minimal Fee 1 Juta'
-         },
-       }
+        },
+      }
      }
   }, { sequelize });
   Seleb.associate = function(models) {
