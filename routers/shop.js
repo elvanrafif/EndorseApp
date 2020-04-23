@@ -12,6 +12,6 @@ router.get('/', ShopController.show)
 router.get('/', ShopController.showSeleb)
 router.get('/:shop_id/add', checkSession, ShopController.addEndorsementForm)
 router.post('/:shop_id/add/:seleb_id', checkSession, ShopController.addEndorsement)
-router.get('/:shop_id/list', ShopController.listSeleb)
+router.get('/:shop_id/list', checkSession, ShopController.listSeleb)
 
 module.exports = router

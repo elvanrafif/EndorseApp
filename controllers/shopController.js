@@ -25,10 +25,11 @@ class ShopController{
     })
     .then((data)=>{
       shop = data
+      // console.log(shop)
       return Seleb.findAll()
       })
       .then((data)=>{
-        // res.send(shop)
+        // console.log(data)
         res.render('addEndorsement',{data,shop,rupiah})
       })
       .catch((err)=>{
