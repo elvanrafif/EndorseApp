@@ -28,7 +28,6 @@ class ShopController{
       return Seleb.findAll()
       })
       .then((data)=>{
-        console.log(shop[0]);
         // res.send(shop)
         res.render('addEndorsement',{data,shop,rupiah})
       })

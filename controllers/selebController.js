@@ -15,7 +15,7 @@ class SelebController{
     
   }
   static addForm(req,res){
-    res.render('addSeleb')
+    res.render('addSeleb', {error : req.query.error})
   }
   static add(req,res){
     Seleb.create({
@@ -28,15 +28,19 @@ class SelebController{
     .then(()=> {
       res.redirect('/Seleb')
     })
-    .catch(error=> {
-      res.send(error)
+    .catch((err)=> {
+      let error = []
+      for (let i = 0; i < err.errors.length;i++){
+        error.push(err.errors[i].message)
+      }
+      res.redirect(`/Seleb/add?error=${error.join(', ')}`)
     })
 
   }
   static editForm(req,res){
     Seleb.findByPk(Number(req.params.id))
     .then(data=> {
-      res.render('editSeleb',{data})
+      res.render('editSeleb',{data, error:req.query.error})
     })
     .catch(error=> {
       res.send(error)
@@ -56,10 +60,15 @@ class SelebController{
     .then(()=>{
       res.redirect('/Seleb')
     })
-    .catch(error => {
-      res.send(error)
+    .catch((err) => {
+      let error = []
+      for (let i = 0; i < err.errors.length;i++){
+        error.push(err.errors[i].message)
+      }
+      res.redirect(`/Seleb/${req.params.id}/edit?error=${error.join(', ')}`)
     })
   }
+
   static delete(req,res){
     Seleb.destroy({
       where : {id: Number(req.params.id)}

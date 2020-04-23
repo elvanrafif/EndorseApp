@@ -1,6 +1,10 @@
 <%- include('./partials/head') %>
 
-
+<% if (error) {%>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
+<%}%> 
   <h1>Add new Celeb</h1>
   <form action="/Seleb/add" method="POST">
     <div class="form-group">
@@ -14,7 +18,7 @@
     <div class="form-group">
         <label for="exampleFormControlInput1">Gender</label>
         <select class="form-control" name="gender">
-            <option selected>---SELECT---</option>
+            <option selected disabled>---SELECT---</option>
             <option value="male">male</option>
             <option value="female">female</option>
         </select>

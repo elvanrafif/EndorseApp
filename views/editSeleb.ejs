@@ -1,6 +1,10 @@
 <%- include('./partials/head') %>
 
-
+<% if (error) {%>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
+<%}%> 
   <h1>Edit Your Celebrity</h1><br>
   <form action="/Seleb/<%= data.id%>/edit" method="POST">
     <div class="form-group">
