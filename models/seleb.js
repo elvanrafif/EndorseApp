@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { sequelize });
   Seleb.associate = function(models) {
     // associations can be defined here
+    Seleb.belongsToMany(models.Shop,{through:models.SelebShop})
   };
   return Seleb;
 };

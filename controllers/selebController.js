@@ -1,10 +1,13 @@
-const {Seleb} = require('../models')
+const {Seleb, Shop, SelebShop} = require('../models')
+const rupiah = require('../helpers/rupiah')
 
 class SelebController{
   static show(req,res){
-    Seleb.findAll()
+    Seleb.findAll({
+      order: [['followers','desc']]
+    })
     .then(data=> {
-      res.render('seleb',{data})
+      res.render('seleb',{data, rupiah})
     })
     .catch(error=> {
       res.send(error)
@@ -66,6 +69,28 @@ class SelebController{
     })
     .catch(error => {
       res.send(error)
+    })
+  }
+  static collabs(req,res){
+    let listShop;
+    let listSeleb;
+    Seleb.findAll({
+      where:{
+        id : req.params.seleb_id
+      },
+      include:[{model:Shop}]
+    })
+    .then((data)=>{
+      listSeleb = data
+      return Shop.findAll()
+    })
+    .then((data)=>{
+      listShop = data
+      // res.send(listSeleb)
+      res.render('collabs', {listShop,listSeleb,rupiah})
+    })
+    .catch((err)=>{
+      res.send(err)
     })
   }
 }

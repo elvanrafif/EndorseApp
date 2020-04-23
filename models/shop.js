@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { sequelize });
   Shop.associate = function(models) {
     // associations can be defined here
+    Shop.belongsToMany(models.Seleb,{through:models.SelebShop})
   };
   return Shop;
 };
